@@ -1,3 +1,4 @@
 # DataStructures
 
-A description of this package.
+Basic Data Structures in Swift!
+by Diego Jerez Barroso
