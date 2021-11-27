@@ -125,8 +125,21 @@ public class LinkedList<T: Equatable> {
         // If inserted at the end:
         
         if index == (count - 1) {
+            let newNode = Node(data)
+            newNode.previous = tail
             append(data)
-            return Node(data)
+            return newNode
+        }
+        
+        // If inserted at index 1, head must point to our node:
+        
+        if index == 1 {
+            let newNode = Node(data)
+            newNode.next = head?.next
+            newNode.previous = head
+            head?.next = newNode
+            newNode.next?.previous = newNode
+            return newNode
         }
         
         // If inserted at any other index:
@@ -141,6 +154,7 @@ public class LinkedList<T: Equatable> {
                 newNode.previous = current?.previous
                 newNode.next = current
                 
+                current?.previous?.next = newNode
                 current?.previous = newNode
                 
                 return newNode
@@ -151,29 +165,6 @@ public class LinkedList<T: Equatable> {
         }
         
         return newNode
-        
-//        if index == (count - 1) {
-//            append(data)
-//            return Node(data)
-//        }
-//
-//        guard let nextNode = nodeAt(index) else {
-//            assertionFailure("Node was not found")
-//            return Node(data)
-//        }
-//
-//        let newNode = Node(data)
-//
-//        if nextNode.previous == nil {
-//            head = newNode
-//        } else {
-//            newNode.previous = nextNode.previous
-//        }
-//
-//        nextNode.previous = newNode
-//        newNode.next = nextNode
-//
-//        return newNode
     }
     
     // MARK: - Remove

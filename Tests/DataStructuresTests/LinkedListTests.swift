@@ -106,9 +106,9 @@ final class LinkedListTests: XCTestCase {
         
         XCTAssertEqual(sut.tail?.data, 999)
         XCTAssertEqual(sut.toArray(), [1, 2, 3, 4, 999])
+        XCTAssertEqual(sut.tail?.previous?.data, 4)
     }
     
-    // TODO: Fix
     func testInsertAtAnyIndex() {
 
         XCTAssertEqual(sut.toArray(), [1, 2, 3, 4])
@@ -121,6 +121,15 @@ final class LinkedListTests: XCTestCase {
 
         sut.insertAt(4, data: 100)
         XCTAssertEqual(sut.toArray(), [1, 25, 50, 2, 100, 3, 4])
+        
+        sut.insertAt(3, data: 999)
+        XCTAssertEqual(sut.toArray(), [1, 25, 50, 999, 2, 100, 3, 4])
+        
+        sut.insertAt(0, data: 777)
+        XCTAssertEqual(sut.toArray(), [777, 1, 25, 50, 999, 2, 100, 3, 4])
+        
+        sut.insertAt(8, data: 288)
+        XCTAssertEqual(sut.toArray(), [777, 1, 25, 50, 999, 2, 100, 3, 4, 288])
     }
     
     // MARK: - Remove
