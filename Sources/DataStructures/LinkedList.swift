@@ -11,7 +11,7 @@ import Foundation
 
 public class LinkedList<T: Equatable> {
     
-    // MARK: - Private
+    // MARK: - Private Variables
     
     private(set) var head: Node<T>?
     private(set) var tail: Node<T>?
